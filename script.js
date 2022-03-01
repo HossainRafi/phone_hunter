@@ -1,13 +1,13 @@
-// Common Two Variable
+// Common Variable
 const phoneDetails = document.getElementById("phone-details");
 const error = document.getElementById("errormsg");
+const searchValue = document.getElementById("input-value");
+const searchResult = document.getElementById("search-result");
 error.style.display = "none";
 
 // Get Vlue
 const getValue = () => {
-  const searchValue = document.getElementById("input-value");
   const searchText = searchValue.value;
-  searchValue.value = "";
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
   fetch(url)
     .then((res) => res.json())
@@ -16,11 +16,12 @@ const getValue = () => {
 
 // Display Results
 const displaySearchResult = (phones) => {
-  if (phones.length <= 0) {
+  if (phones.length <= 0 || searchValue.value === "") {
     error.style.display = "block";
+    searchResult.textContent = "";
   } else {
     error.style.display = "none";
-    const searchResult = document.getElementById("search-result");
+
     searchResult.textContent = "";
     phoneDetails.textContent = "";
     phones.forEach((phone) => {
@@ -42,6 +43,7 @@ const displaySearchResult = (phones) => {
       searchResult.appendChild(div);
     });
   }
+  searchValue.value = "";
 };
 
 // Get Phone Details
