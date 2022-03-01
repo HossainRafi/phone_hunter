@@ -1,6 +1,9 @@
+// Common Two Variable
 const phoneDetails = document.getElementById("phone-details");
 const error = document.getElementById("errormsg");
 error.style.display = "none";
+
+// Get Vlue
 const getValue = () => {
   const searchValue = document.getElementById("input-value");
   const searchText = searchValue.value;
@@ -11,6 +14,7 @@ const getValue = () => {
     .then((data) => displaySearchResult(data.data.slice(0, 20)));
 };
 
+// Display Results
 const displaySearchResult = (phones) => {
   if (phones.length <= 0) {
     error.style.display = "block";
@@ -20,6 +24,7 @@ const displaySearchResult = (phones) => {
     searchResult.textContent = "";
     phoneDetails.textContent = "";
     phones.forEach((phone) => {
+      // New Card Element Creat
       const div = document.createElement("div");
       div.classList.add("col");
       div.innerHTML = `
@@ -38,14 +43,19 @@ const displaySearchResult = (phones) => {
     });
   }
 };
+
+// Get Phone Details
 const phoneDetail = (phoneId) => {
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayPhoneDetails(data.data));
 };
+
+// Display Phone Details
 const displayPhoneDetails = (phone) => {
   phoneDetails.textContent = "";
+  // Creat Details Element
   const div = document.createElement("div");
   div.classList.add("card");
   div.innerHTML = `
@@ -74,3 +84,4 @@ const displayPhoneDetails = (phone) => {
     `;
   phoneDetails.appendChild(div);
 };
+// Finished
