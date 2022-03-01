@@ -52,6 +52,7 @@ const displayPhoneDetails = (phone) => {
         <p class="card-text"> Display: ${phone.mainFeatures.displaySize}</p>
         <p class="card-text"> Storage: ${phone.mainFeatures.storage}</p>
         <p class="card-text"> Sensors: ${phone.mainFeatures.sensors[0]}, ${phone.mainFeatures.sensors[1]}, ${phone.mainFeatures.sensors[2]}, ${phone.mainFeatures.sensors[3]}, ${phone.mainFeatures.sensors[4]}</p>
+        <h6 class="card-text"> Others Info: </h6>
         <p class="card-text"> WLAN: ${phone.others.WLAN}, Bluetooth: ${phone.others.Bluetooth}, GPS: ${phone.others.GPS}, NFC: ${phone.others.NFC}, Radio: ${phone.others.Radio}, USB: ${phone.others.USB}</p>
         </div>
     `;
