@@ -9,9 +9,9 @@ const getValue = () => {
 };
 
 const displaySearchResult = (phones) => {
-  const searchResult = document.getElementById("search-result");
+    const searchResult = document.getElementById("search-result");
+    searchResult.textContent = "";
   phones.forEach((phone) => {
-    // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
@@ -30,14 +30,12 @@ const displaySearchResult = (phones) => {
   });
 };
 const phoneDetail = (phoneId) => {
-  // console.log(phoneId);
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayPhoneDetails(data.data));
 };
 const displayPhoneDetails = (phone) => {
-  // console.log(phone);
   const phoneDetails = document.getElementById("phone-details");
   phoneDetails.textContent = "";
   const div = document.createElement("div");
