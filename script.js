@@ -1,8 +1,8 @@
 // Common Variable
 const phoneDetails = document.getElementById("phone-details");
-const error = document.getElementById("errormsg");
 const searchValue = document.getElementById("input-value");
 const searchResult = document.getElementById("search-result");
+const error = document.getElementById("errormsg");
 error.style.display = "none";
 
 // Get Vlue
@@ -91,11 +91,13 @@ const displayPhoneDetails = (phone) => {
     phone.mainFeatures.sensors[2]
   }, ${phone.mainFeatures.sensors[3]}, ${phone.mainFeatures.sensors[4]}</p>
         <p class="card-text"><span class="fw-bold"> Others Info: </span>
-        <span class="card-text"> WLAN: ${phone.others.WLAN}, Bluetooth: ${
-    phone.others.Bluetooth
-  }, GPS: ${phone.others.GPS}, NFC: ${phone.others.NFC}, Radio: ${
-    phone.others.Radio
-  }, USB: ${phone.others.USB}</span></p>
+        <span class="card-text"> WLAN: ${
+          phone.others?.WLAN || "Not Found"
+        }, Bluetooth: ${phone.others?.Bluetooth || "Not Found"}, GPS: ${
+    phone.others?.GPS || "Not Found"
+  }, NFC: ${phone.others?.NFC || "Not Found"}, Radio: ${
+    phone.others?.Radio || "Not Found"
+  }, USB: ${phone.others?.USB || "Not Found"}</span></p>
         </div>
     `;
   phoneDetails.appendChild(div);
