@@ -19,6 +19,7 @@ const displaySearchResult = (phones) => {
   if (phones.length <= 0 || searchValue.value === "") {
     error.style.display = "block";
     searchResult.textContent = "";
+    phoneDetails.textContent = "";
   } else {
     error.style.display = "none";
 
