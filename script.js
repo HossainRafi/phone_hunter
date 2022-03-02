@@ -29,14 +29,16 @@ const displaySearchResult = (phones) => {
       const div = document.createElement("div");
       div.classList.add("col");
       div.innerHTML = `
-        <div class="card">
-          <img src="${phone.image}" class="card-img-top" alt="..." />
-          <div class="card-body">
+        <div class="card rounded-3 shadow p-3 mb-2 bg-body">
+          <img src="${phone.image}" class="card-img-top w-50 mx-auto pt-3" alt="..." />
+          <div class="card-body text-center">
             <h3 class="card-title">Model: ${phone.phone_name}</h3>
             <h4 class="card-title">Brand: ${phone.brand}</h4>
+            <div class="pt-3 pb-2 mx-auto">
             <button onclick="phoneDetail('${phone.slug}')" type="button" class="btn btn-secondary">
             Phone Datails
             </button>
+            </div>
           </div>
         </div>
         `;
@@ -61,27 +63,39 @@ const displayPhoneDetails = (phone) => {
   const div = document.createElement("div");
   div.classList.add("card");
   div.innerHTML = `
-        <img src="${phone.image}" class="card-img-top" alt="..." />
+        <img src="${
+          phone.image
+        }" class="card-img-top w-25 mx-auto pt-4" alt="..." />
         <div class="card-body">
-        <h4 class="card-title"> Model: ${phone.name}</h4>
-        <h5 class="card-title"> Release Date: ${
+        <h4 class="card-title text-center"><span class="fw-bold"> Model: </span>${
+          phone.name
+        }</h4>
+        <h5 class="card-title text-center"><span class="fw-bold"> Release Date: </span>${
           phone?.releaseDate || "Not Found"
         }</h5>
-        <p class="card-text"> Chipset: ${phone.mainFeatures.chipSet}</p>
-        <p class="card-text"> Memory: ${phone.mainFeatures.memory}</p>
-        <p class="card-text"> Display: ${phone.mainFeatures.displaySize}</p>
-        <p class="card-text"> Storage: ${phone.mainFeatures.storage}</p>
-        <p class="card-text"> Sensors: ${phone.mainFeatures.sensors[0]}, ${
-    phone.mainFeatures.sensors[1]
-  }, ${phone.mainFeatures.sensors[2]}, ${phone.mainFeatures.sensors[3]}, ${
-    phone.mainFeatures.sensors[4]
-  }</p>
-        <h6 class="card-text"> Others Info: </h6>
-        <p class="card-text"> WLAN: ${phone.others.WLAN}, Bluetooth: ${
+        <p class="card-text"><span class="fw-bold"> Chipset: </span>${
+          phone.mainFeatures.chipSet
+        }</p>
+        <p class="card-text"><span class="fw-bold"> Memory: </span>${
+          phone.mainFeatures.memory
+        }</p>
+        <p class="card-text"><span class="fw-bold"> Display: </span>${
+          phone.mainFeatures.displaySize
+        }</p>
+        <p class="card-text"><span class="fw-bold"> Storage: </span>${
+          phone.mainFeatures.storage
+        }</p>
+        <p class="card-text"><span class="fw-bold"> Sensors: </span>${
+          phone.mainFeatures.sensors[0]
+        }, ${phone.mainFeatures.sensors[1]}, ${
+    phone.mainFeatures.sensors[2]
+  }, ${phone.mainFeatures.sensors[3]}, ${phone.mainFeatures.sensors[4]}</p>
+        <p class="card-text"><span class="fw-bold"> Others Info: </span>
+        <span class="card-text"> WLAN: ${phone.others.WLAN}, Bluetooth: ${
     phone.others.Bluetooth
   }, GPS: ${phone.others.GPS}, NFC: ${phone.others.NFC}, Radio: ${
     phone.others.Radio
-  }, USB: ${phone.others.USB}</p>
+  }, USB: ${phone.others.USB}</span></p>
         </div>
     `;
   phoneDetails.appendChild(div);
