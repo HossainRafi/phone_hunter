@@ -3,6 +3,8 @@ const phoneDetails = document.getElementById("phone-details");
 const searchValue = document.getElementById("input-value");
 const searchResult = document.getElementById("search-result");
 const error = document.getElementById("errormsg");
+const allBtn = document.getElementById("see-all");
+allBtn.style.display = "none";
 error.style.display = "none";
 
 // Get Vlue
@@ -11,11 +13,20 @@ const getValue = () => {
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displaySearchResult(data.data.slice(0, 20)));
+    .then((data) => displaySearchResult(data.data));
 };
 
 // Display Results
 const displaySearchResult = (phones) => {
+  // console.log(phones);
+  if (phones.length > 20) {
+    allBtn.style.display = "block";
+  } else {
+    allBtn.style.display = "none";
+  }
+
+  const first20Phones = phones.slice(0, 20);
+  const second20Phones = phones.slice(20, phones.length);
   if (phones.length <= 0 || searchValue.value === "") {
     error.style.display = "block";
     searchResult.textContent = "";
@@ -25,7 +36,7 @@ const displaySearchResult = (phones) => {
 
     searchResult.textContent = "";
     phoneDetails.textContent = "";
-    phones.forEach((phone) => {
+    first20Phones.forEach((phone) => {
       // New Card Element Creat
       const div = document.createElement("div");
       div.classList.add("col");
@@ -45,8 +56,33 @@ const displaySearchResult = (phones) => {
         `;
       searchResult.appendChild(div);
     });
+    allBtn.addEventListener("click", function () {
+      second20Phones.forEach((phone) => {
+        allBtn.style.display = "none";
+        // New Card Element Creat
+        const div = document.createElement("div");
+        div.classList.add("col");
+        div.innerHTML = `
+        <div class="card rounded-3 shadow p-3 mb-2 bg-body">
+          <img src="${phone.image}" class="card-img-top w-50 mx-auto pt-3" alt="..." />
+          <div class="card-body text-center">
+            <h3 class="card-title">Model: ${phone.phone_name}</h3>
+            <h4 class="card-title">Brand: ${phone.brand}</h4>
+            <div class="pt-3 pb-2 mx-auto">
+            <button onclick="phoneDetail('${phone.slug}')" type="button" class="btn btn-secondary">
+            Phone Datails
+            </button>
+            </div>
+          </div>
+        </div>
+        `;
+        searchResult.appendChild(div);
+      });
+    });
   }
+
   searchValue.value = "";
+  // allBtn.style.display = "none";
 };
 
 // Get Phone Details
